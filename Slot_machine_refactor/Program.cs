@@ -15,6 +15,7 @@ class Program
         double wallet = 0.0;
         
         string walletEntry = UI.GetUserIntroWalletEntry();
+        //update this portion of the code to apply validation and print error messages in the method above ^^ in UI
         walletEntrySuccessful = Double.TryParse(walletEntry, out wallet);
         
         while (!walletEntrySuccessful)
