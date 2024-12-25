@@ -7,7 +7,30 @@ public class UI
     {
         Console.WriteLine("Let's play a game! The name of the game is a slot machine");
     }
+
+    public static CustomClasses.DoubleValidation ValidateDoubleEntry(string entry)
+    {
+        double val;
+        bool success = double.TryParse(entry, out val);
+
+        var doubleEntry = new CustomClasses.DoubleValidation();
+
+        if (success)
+        {
+            doubleEntry.DoubleValue = val;
+            doubleEntry.SuccessfulDouble = success;
+        }
+        else
+        {
+            Console.WriteLine("Please enter a valid Double entry only");
+            doubleEntry.DoubleValue = -1;
+            doubleEntry.SuccessfulDouble = false;
+        }
+
+        return doubleEntry;
+    }
     
+    /*
     public static string GetUserIntroWalletEntry()
     {
         string value;
@@ -16,15 +39,24 @@ public class UI
         
         return value;
     }
-
-    public static string ValidateUserWalletEntry()
+    */
+    
+    public static CustomClasses.DoubleValidation ValidateUserWalletEntry()
     {
         string value;
-        Console.WriteLine("Please enter digits only!");
-        Console.Write("Please enter your Wallet amount now: ");
-        value = Console.ReadLine();
+        bool success = false;
         
-        return value;
+        var final  = new CustomClasses.DoubleValidation();
+
+        while (!success)
+        {
+            Console.WriteLine("Please enter how much you would like to load in your wallet now: ");
+            value = Console.ReadLine();
+
+            final = ValidateDoubleEntry(value);
+            success = final.SuccessfulDouble;
+        }
+        return final;
     }
     
     public static void DisplayWalletAmount( double amount)

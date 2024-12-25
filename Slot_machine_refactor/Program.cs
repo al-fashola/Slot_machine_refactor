@@ -9,20 +9,11 @@ class Program
         
         bool wagerEntrySuccessful;
         bool gameChoiceSuccessful;
-        bool walletEntrySuccessful;
+    
         
-        
-        double wallet = 0.0;
-        
-        string walletEntry = UI.GetUserIntroWalletEntry();
-        //update this portion of the code to apply validation and print error messages in the method above ^^ in UI
-        walletEntrySuccessful = Double.TryParse(walletEntry, out wallet);
-        
-        while (!walletEntrySuccessful)
-        {
-            walletEntry = UI.ValidateUserWalletEntry(); 
-            walletEntrySuccessful = Double.TryParse(walletEntry, out wallet);
-        }
+        var walletEntry  = UI.ValidateUserWalletEntry();
+        double wallet = walletEntry.DoubleValue;
+       
         
         char input = Constants.CONTINUE_PLAYING_GAME;
         while (input == Constants.CONTINUE_PLAYING_GAME)
