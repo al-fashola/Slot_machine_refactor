@@ -3,12 +3,12 @@ namespace Slot_machine_refactor;
 public class UI
 {
     
-    public static void UserIntroMessage()
+    public static void DisplayUserIntroMessage()
     {
         Console.WriteLine("Let's play a game! The name of the game is a slot machine");
     }
     
-    public static string UserIntroWalletEntry()
+    public static string GetUserIntroWalletEntry()
     {
         string value;
         Console.WriteLine("Please enter how much you would like to load in your wallet now: ");
@@ -17,7 +17,7 @@ public class UI
         return value;
     }
 
-    public static string UserValidateWalletEntry()
+    public static string ValidateUserWalletEntry()
     {
         string value;
         Console.WriteLine("Please enter digits only!");
@@ -41,7 +41,7 @@ public class UI
                           $"{gameMode4} - Play diagonal lines \n");
     }
 
-    public static string UserBetEntry()
+    public static string GetUserBetEntry()
     {
         string value;
         Console.WriteLine("Please enter your bet now: ");

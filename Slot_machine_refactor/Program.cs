@@ -5,7 +5,7 @@ class Program
     static void Main(string[] args)
     {
         //intro message to establish the game being played 
-        UI.UserIntroMessage();
+        UI.DisplayUserIntroMessage();
         
         bool wagerEntrySuccessful;
         bool gameChoiceSuccessful;
@@ -14,12 +14,12 @@ class Program
         
         double wallet = 0.0;
         
-        string walletEntry = UI.UserIntroWalletEntry();
+        string walletEntry = UI.GetUserIntroWalletEntry();
         walletEntrySuccessful = Double.TryParse(walletEntry, out wallet);
         
         while (!walletEntrySuccessful)
         {
-            walletEntry = UI.UserValidateWalletEntry(); 
+            walletEntry = UI.ValidateUserWalletEntry(); 
             walletEntrySuccessful = Double.TryParse(walletEntry, out wallet);
         }
         
@@ -31,7 +31,7 @@ class Program
 
             double wager = 0.0;
 
-            string wagerEntry = UI.UserBetEntry();
+            string wagerEntry = UI.GetUserBetEntry();
             wagerEntrySuccessful = Double.TryParse(wagerEntry, out wager);
 
             //Validate relevant wager values entered and repeat warnings until so
