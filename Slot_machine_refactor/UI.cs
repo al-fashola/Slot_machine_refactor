@@ -62,12 +62,23 @@ public class UI
                           $"{gameMode4} - Play diagonal lines \n");
     }
 
-    public static string GetUserBetEntry()
+    public static CustomClasses.DoubleValidation GetUserBetEntry()
     {
         string value;
-        Console.WriteLine("Please enter your bet now: ");
-        value= Console.ReadLine();
-        return value;
+        bool success = false;
+        
+        var final  = new CustomClasses.DoubleValidation();
+
+        while (!success)
+        {
+            Console.WriteLine("Please enter your bet now: ");
+            value = Console.ReadLine();
+
+            final = ValidateDoubleEntry(value);
+            success = final.SuccessfulDouble;
+        }
+        return final;
+        
     }
     
 }

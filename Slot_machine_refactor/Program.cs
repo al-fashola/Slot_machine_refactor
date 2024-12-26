@@ -23,17 +23,19 @@ class Program
 
             double wager = 0.0;
 
-            string wagerEntry = UI.GetUserBetEntry();
-            wagerEntrySuccessful = Double.TryParse(wagerEntry, out wager);
+            var wagerEntry = UI.GetUserBetEntry();
+            wagerEntrySuccessful = wagerEntry.SuccessfulDouble;  
+            wager = wagerEntry.DoubleValue;
 
-            //Validate relevant wager values entered and repeat warnings until so
+            
+            //This validation should be done in the logic?
             while (!wagerEntrySuccessful || wager > wallet || wager == 0.0)
             {
                 Console.WriteLine(
-                    $"Please enter digits only! The wager amount will need to be greater than 0 and less than or equal to the funds currently in your wallet. Wallet: {wallet}");
-                Console.Write("Please enter your bet now: ");
-                wagerEntry = Console.ReadLine();
-                wagerEntrySuccessful = Double.TryParse(wagerEntry, out wager);
+                    $"The wager amount will need to be greater than 0 and less than or equal to the funds currently in your wallet. Wallet: {wallet}");
+                wagerEntry = UI.GetUserBetEntry();
+                wagerEntrySuccessful = wagerEntry.SuccessfulDouble;
+                wager = wagerEntry.DoubleValue;
             }
 
             int gameMode = 0;
