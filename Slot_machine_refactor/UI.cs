@@ -30,17 +30,6 @@ public class UI
         return doubleEntry;
     }
     
-    /*
-    public static string GetUserIntroWalletEntry()
-    {
-        string value;
-        Console.WriteLine("Please enter how much you would like to load in your wallet now: ");
-        value = Console.ReadLine();
-        
-        return value;
-    }
-    */
-    
     public static CustomClasses.DoubleValidation ValidateUserWalletEntry()
     {
         string value;

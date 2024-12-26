@@ -10,4 +10,10 @@ public class CustomClasses
         public double DoubleValue;
     }
     
+    public class IntValidation
+    {
+        public bool SuccessfulDouble;
+        public int IntValue;
+    }
+    
 }
