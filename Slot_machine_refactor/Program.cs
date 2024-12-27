@@ -29,10 +29,10 @@ class Program
 
             
             //This validation should be done in the logic?
-            while (!wagerEntrySuccessful || wager > wallet || wager == 0.0)
+            while (Logic.ValidateSuccessfulWagerEntry(wagerEntrySuccessful, wager, wallet))
             {
-                Console.WriteLine(
-                    $"The wager amount will need to be greater than 0 and less than or equal to the funds currently in your wallet. Wallet: {wallet}");
+                UI.DisplayBetEntryInvalidMessage(wallet);
+                
                 wagerEntry = UI.GetUserBetEntry();
                 wagerEntrySuccessful = wagerEntry.SuccessfulDouble;
                 wager = wagerEntry.DoubleValue;

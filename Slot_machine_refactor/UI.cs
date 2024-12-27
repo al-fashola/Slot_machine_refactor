@@ -81,4 +81,14 @@ public class UI
         
     }
     
+    
+    public static void DisplayBetEntryInvalidMessage(double amount)
+    {
+        Console.WriteLine(
+            $"The wager amount will need to be greater than 0 and less than or equal to the funds currently in your wallet. Wallet: {amount}");
+    
+    }
+    
+    
+    
 }
