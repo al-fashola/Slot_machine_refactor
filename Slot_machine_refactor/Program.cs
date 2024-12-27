@@ -26,9 +26,7 @@ class Program
             var wagerEntry = UI.GetUserBetEntry();
             wagerEntrySuccessful = wagerEntry.SuccessfulDouble;  
             wager = wagerEntry.DoubleValue;
-
             
-            //This validation should be done in the logic?
             while (Logic.ValidateSuccessfulWagerEntry(wagerEntrySuccessful, wager, wallet))
             {
                 UI.DisplayBetEntryInvalidMessage(wallet);
@@ -39,11 +37,14 @@ class Program
             }
 
             int gameMode = 0;
-
-            //Validate relevant game choice values entered and repeat warnings until so
-            Console.WriteLine("Enter your choice number: ");
-            string gameEntry = Console.ReadLine();
-            gameChoiceSuccessful = int.TryParse(gameEntry, out gameMode);
+            
+            
+            
+            //update the logic folder and ui fro below game choice entry and variables 
+                
+            var GameEntry  = UI.ValidateUserGameEntry();
+            gameChoiceSuccessful = GameEntry.SuccessfulInteger;
+                //int.TryParse(gameEntry, out gameMode);
 
             while (!gameChoiceSuccessful || (gameMode <= 0 || gameMode > Constants.NUMBER_OF_GAMES_OPTIONS))
             {

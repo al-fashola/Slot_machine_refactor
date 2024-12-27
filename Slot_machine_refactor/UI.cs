@@ -86,7 +86,47 @@ public class UI
     {
         Console.WriteLine(
             $"The wager amount will need to be greater than 0 and less than or equal to the funds currently in your wallet. Wallet: {amount}");
+    }
     
+    
+    public static CustomClasses.IntValidation ValidateIntEntry(string entry)
+    {
+        int val;
+        bool success = int.TryParse(entry, out val);
+
+        var IntEntry = new CustomClasses.IntValidation();
+
+        if (success)
+        {
+            IntEntry.IntValue = val;
+            IntEntry.SuccessfulInteger = success;
+        }
+        else
+        {
+            Console.WriteLine("Please enter a valid Integer entry only");
+            IntEntry.IntValue = -1;
+            IntEntry.SuccessfulInteger = false;
+        }
+
+        return IntEntry;
+    }
+    
+    public static CustomClasses.IntValidation ValidateUserGameEntry()
+    {
+        string value;
+        bool success = false;
+        
+        var final  = new CustomClasses.IntValidation();
+
+        while (!success)
+        {
+            Console.WriteLine("Enter your choice number: ");
+            value = Console.ReadLine();
+
+            final = ValidateIntEntry(value);
+            success = final.SuccessfulInteger;
+        }
+        return final;
     }
     
     

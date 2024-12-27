@@ -12,7 +12,7 @@ public class CustomClasses
     
     public class IntValidation
     {
-        public bool SuccessfulDouble;
+        public bool SuccessfulInteger;
         public int IntValue;
     }
     
