@@ -103,7 +103,7 @@ public class UI
         }
         else
         {
-            Console.WriteLine("Please enter a valid Integer entry only");
+            Console.WriteLine("Please enter a valid Integer entry from the list only");
             IntEntry.IntValue = -1;
             IntEntry.SuccessfulInteger = false;
         }

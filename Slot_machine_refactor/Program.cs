@@ -44,14 +44,14 @@ class Program
                 
             var GameEntry  = UI.ValidateUserGameEntry();
             gameChoiceSuccessful = GameEntry.SuccessfulInteger;
+            gameMode = GameEntry.IntValue;
                 //int.TryParse(gameEntry, out gameMode);
 
-            while (!gameChoiceSuccessful || (gameMode <= 0 || gameMode > Constants.NUMBER_OF_GAMES_OPTIONS))
+            while (Logic.ValidateSuccessfulGameEntry(gameChoiceSuccessful, gameMode))
             {
-                Console.WriteLine("Please enter only integer numbers from the list above!");
-                Console.Write("Enter your choice number: ");
-                gameEntry = Console.ReadLine();
-                gameChoiceSuccessful = int.TryParse(gameEntry, out gameMode);
+                GameEntry = UI.ValidateUserGameEntry();
+                gameChoiceSuccessful = GameEntry.SuccessfulInteger; 
+                gameMode = GameEntry.IntValue;
             }
 
             // assign the size of array
