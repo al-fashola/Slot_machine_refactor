@@ -128,6 +128,19 @@ public class UI
         }
         return final;
     }
+
+    public static void DiplaySlotGrid(int[,] grid)
+    {
+        for (int i = 0; i < Constants.MATRIX_GRID_SIZE; i++)
+        {
+            for (int j = 0; j < Constants.MATRIX_GRID_SIZE; j++)
+            {
+                Console.Write($"|{grid[i, j]}|");
+            }
+
+            Console.WriteLine("");
+        }
+    }
     
     
     

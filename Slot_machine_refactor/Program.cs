@@ -37,16 +37,11 @@ class Program
             }
 
             int gameMode = 0;
-            
-            
-            
-            //update the logic folder and ui fro below game choice entry and variables 
                 
             var GameEntry  = UI.ValidateUserGameEntry();
             gameChoiceSuccessful = GameEntry.SuccessfulInteger;
             gameMode = GameEntry.IntValue;
-                //int.TryParse(gameEntry, out gameMode);
-
+               
             while (Logic.ValidateSuccessfulGameEntry(gameChoiceSuccessful, gameMode))
             {
                 GameEntry = UI.ValidateUserGameEntry();
@@ -55,27 +50,11 @@ class Program
             }
 
             // assign the size of array
-            int[,] grid = new int[Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE];
+            int[,] grid = Logic.PopulateSlotMachineGrid(); 
 
-            //assign random integers into array slots
-            Random rand = new Random();
-            for (int i = 0; i < Constants.MATRIX_GRID_SIZE; i++)
-            {
-                for (int j = 0; j < Constants.MATRIX_GRID_SIZE; j++)
-                {
-                    grid[i, j] = rand.Next(0, Constants.MAX_SLOT_MACHINE_INT);
-                }
-            }
-
-            for (int i = 0; i < Constants.MATRIX_GRID_SIZE; i++)
-            {
-                for (int j = 0; j < Constants.MATRIX_GRID_SIZE; j++)
-                {
-                    Console.Write($"|{grid[i, j]}|");
-                }
-
-                Console.WriteLine("");
-            }
+            //print current grid 
+            UI.DiplaySlotGrid(grid);
+           
 
             double payoutRate = 0.0;
             double totalPayout = 0.0;
