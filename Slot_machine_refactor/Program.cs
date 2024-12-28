@@ -55,6 +55,9 @@ class Program
             //print current grid 
             UI.DiplaySlotGrid(grid);
            
+            
+            
+            ///
 
             double payoutRate = 0.0;
             double totalPayout = 0.0;
@@ -63,6 +66,7 @@ class Program
             int matchCounter = 0;
             int firstValue = 0;
 
+            
             // Logical breakdown to validate match in values across diagonals, horizontals, verticals
             if (gameMode == Constants.CENTER_LINE_MODE)
             {

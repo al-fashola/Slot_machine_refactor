@@ -16,4 +16,10 @@ public class CustomClasses
         public int IntValue;
     }
     
+    public class GameModeValidation
+    {
+        public bool GameWin;
+        public double Payout;
+    }
+    
 }
