@@ -158,9 +158,9 @@ public class Logic
         GameResults.Payout = payoutRate;
         return GameResults;
     }
-    
-    
-    
+
+
+
 }
 
 

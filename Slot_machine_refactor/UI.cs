@@ -141,7 +141,17 @@ public class UI
             Console.WriteLine("");
         }
     }
-    
-    
-    
+
+
+    public static CustomClasses.GameWinValidation DisplayGameWinStatus(bool gameStatus, double walletAmount, double wagerAmount, double payoutAmount)
+    {
+        var Gamewin = new CustomClasses.GameWinValidation();
+        
+        
+        
+        return Gamewin;
+        
+    }
+
+
 }
