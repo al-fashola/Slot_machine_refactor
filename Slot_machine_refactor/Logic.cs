@@ -44,7 +44,7 @@ public class Logic
     public static CustomClasses.GameModeValidation ValidateCenterLineGameMode(int gameMode, int [,] grid )
     {
         int matchCounter = 0;
-        var GameResults = new CustomClasses.GameModeValidation();
+        var gameResults = new CustomClasses.GameModeValidation();
         
         if (gameMode == Constants.CENTER_LINE_MODE)
         {
@@ -62,17 +62,17 @@ public class Logic
             }
         }
         
-        GameResults.GameWin = gameWin;
-        GameResults.Payout = payoutRate;
+        gameResults.GameWin = gameWin;
+        gameResults.Payout = payoutRate;
         
-        return GameResults;
+        return gameResults;
     }
     
     public static CustomClasses.GameModeValidation ValidateHorizontalLineGameMode(int gameMode, int [,] grid )
     {
         int firstValue = 0;
         int matchCounter = 0;
-        var GameResults = new CustomClasses.GameModeValidation();
+        var gameResults = new CustomClasses.GameModeValidation();
         
         if (gameMode == Constants.HORIZONTAL_LINE_MODE)
         {
@@ -93,9 +93,9 @@ public class Logic
                 }
             }
         }
-        GameResults.GameWin = gameWin;
-        GameResults.Payout = payoutRate;
-        return GameResults;
+        gameResults.GameWin = gameWin;
+        gameResults.Payout = payoutRate;
+        return gameResults;
     }
     
     
@@ -103,7 +103,7 @@ public class Logic
     {
         int firstValue = 0;
         int matchCounter = 0;
-        var GameResults = new CustomClasses.GameModeValidation();
+        var gameResults = new CustomClasses.GameModeValidation();
         
         if (gameMode == Constants.VERTICAL_LINE_MODE)
         {
@@ -124,9 +124,9 @@ public class Logic
                 }
             }
         }
-        GameResults.GameWin = gameWin;
-        GameResults.Payout = payoutRate;
-        return GameResults;
+        gameResults.GameWin = gameWin;
+        gameResults.Payout = payoutRate;
+        return gameResults;
     }
     
     
@@ -134,7 +134,7 @@ public class Logic
     public static CustomClasses.GameModeValidation ValidateDiagonalLineGameMode(int gameMode, int [,] grid )
     {
         int matchCounter = 0;
-        var GameResults = new CustomClasses.GameModeValidation();
+        var gameResults = new CustomClasses.GameModeValidation();
         
         if (gameMode == Constants.ALL_DIAGONOL_LINE_MODE)
         {
@@ -154,9 +154,9 @@ public class Logic
                 gameWin = true;
             }
         }
-        GameResults.GameWin = gameWin;
-        GameResults.Payout = payoutRate;
-        return GameResults;
+        gameResults.GameWin = gameWin;
+        gameResults.Payout = payoutRate;
+        return gameResults;
     }
 
 

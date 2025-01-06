@@ -57,7 +57,7 @@ class Program
            
             
             
-            ///
+            
 
             double payoutRate = 0.0;
             double totalPayout = 0.0;
