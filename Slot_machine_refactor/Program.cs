@@ -67,85 +67,46 @@ class Program
             int firstValue = 0;
 
             
-            // Logical breakdown to validate match in values across diagonals, horizontals, verticals
             if (gameMode == Constants.CENTER_LINE_MODE)
             {
-                int centerValueInt = Constants.MATRIX_GRID_SIZE / 2;
-                int middleValue = grid[centerValueInt, centerValueInt];
+             var gameModeResults = Logic.ValidateCenterLineGameMode(gameMode, grid);
 
-                for (int i = 0; i < Constants.MATRIX_GRID_SIZE; i++)
-                {
-                    if (middleValue == grid[centerValueInt, i]) matchCounter++;
-                }
-
-                if (matchCounter == Constants.MATRIX_GRID_SIZE)
-                {
-                    payoutRate = Constants.CENTER_LINE_PAYOUT;
-                    gameWin = true;
-                }
+             if (gameModeResults.GameWin)
+             {
+                 gameWin = true;
+                 payoutRate = gameModeResults.Payout;
+             }
             }
 
             if (gameMode == Constants.HORIZONTAL_LINE_MODE)
             {
+                var gameModeResults = Logic.ValidateHorizontalLineGameMode(gameMode, grid);
 
-                for (int i = 0; i < Constants.MATRIX_GRID_SIZE; i++)
+                if (gameModeResults.GameWin)
                 {
-                    matchCounter = 0;
-                    firstValue = grid[i, 0];
-                    for (int j = 0; j < Constants.MATRIX_GRID_SIZE; j++)
-                    {
-                        if (firstValue == grid[i, j]) matchCounter++;
-                    }
-
-                    if (matchCounter == Constants.MATRIX_GRID_SIZE)
-                    {
-                        payoutRate = Constants.HORIZONTAL_LINE_PAYOUT;
-                        gameWin = true;
-                        break;
-                    }
+                    gameWin = true;
+                    payoutRate = gameModeResults.Payout;
                 }
             }
 
             if (gameMode == Constants.VERTICAL_LINE_MODE)
             {
-                for (int i = 0; i < Constants.MATRIX_GRID_SIZE; i++)
-                {
-                    matchCounter = 0;
-                    firstValue = grid[0, i];
-                    for (int j = 0; j < Constants.MATRIX_GRID_SIZE; j++)
-                    {
-                        if (firstValue == grid[j, i]) matchCounter++;
-                    }
+                var gameModeResults = Logic.ValidateVerticalLineGameMode(gameMode, grid);
 
-                    if (matchCounter == Constants.MATRIX_GRID_SIZE)
-                    {
-                        payoutRate = Constants.VERTICAL_LINE_PAYOUT;
-                        gameWin = true;
-                        break;
-                    }
+                if (gameModeResults.GameWin)
+                {
+                    gameWin = true;
+                    payoutRate = gameModeResults.Payout;
                 }
-            }
+            } 
 
             if (gameMode == Constants.ALL_DIAGONOL_LINE_MODE)
             {
-                //((grid[0, 0] == grid[1, 1] && grid[1, 1] == grid[2, 2]) 
-                // || (grid[2, 0] == grid[1, 1] && grid[1, 0] == grid[0, 2]))
-                matchCounter = 0;
-                int matchCounterAlt = 0;
-
-                int centerValueInt = Constants.MATRIX_GRID_SIZE / 2;
-                int matchValue = grid[centerValueInt, centerValueInt];
-
-                for (int h = 0, i = 0, j = Constants.MATRIX_GRID_SIZE - 1; h < Constants.MATRIX_GRID_SIZE; h++, i++, j--)
+                var gameModeResults = Logic.ValidateDiagonalLineGameMode(gameMode, grid);
+                if (gameModeResults.GameWin)
                 {
-                    if (matchValue == grid[h, i]) matchCounter++;
-                    if (matchValue == grid[j, i]) matchCounterAlt++;
-                }
-
-                if (matchCounter == Constants.MATRIX_GRID_SIZE || matchCounterAlt == Constants.MATRIX_GRID_SIZE)
-                {
-                    payoutRate = Constants.ALL_DIAGONOL_LINE_PAYOUT;
                     gameWin = true;
+                    payoutRate = gameModeResults.Payout;
                 }
             }
 

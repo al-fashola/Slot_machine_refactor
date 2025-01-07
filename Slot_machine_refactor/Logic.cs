@@ -40,10 +40,11 @@ public class Logic
     // Validate gamewin - return bool, payoutrate/total payout - create variable for this return function 
     //this will contain all the if validations but could break them each into smaller methods as well before being called in the main gamewin
     
-    
     public static CustomClasses.GameModeValidation ValidateCenterLineGameMode(int gameMode, int [,] grid )
     {
         int matchCounter = 0;
+        payoutRate = 0.0;
+        gameWin = false;
         var gameResults = new CustomClasses.GameModeValidation();
         
         if (gameMode == Constants.CENTER_LINE_MODE)
@@ -72,6 +73,8 @@ public class Logic
     {
         int firstValue = 0;
         int matchCounter = 0;
+        payoutRate = 0.0;
+        gameWin = false;
         var gameResults = new CustomClasses.GameModeValidation();
         
         if (gameMode == Constants.HORIZONTAL_LINE_MODE)
@@ -103,6 +106,8 @@ public class Logic
     {
         int firstValue = 0;
         int matchCounter = 0;
+        payoutRate = 0.0;
+        gameWin = false;
         var gameResults = new CustomClasses.GameModeValidation();
         
         if (gameMode == Constants.VERTICAL_LINE_MODE)
@@ -130,10 +135,11 @@ public class Logic
     }
     
     
-    //left off
     public static CustomClasses.GameModeValidation ValidateDiagonalLineGameMode(int gameMode, int [,] grid )
     {
         int matchCounter = 0;
+        payoutRate = 0.0;
+        gameWin = false;
         var gameResults = new CustomClasses.GameModeValidation();
         
         if (gameMode == Constants.ALL_DIAGONOL_LINE_MODE)

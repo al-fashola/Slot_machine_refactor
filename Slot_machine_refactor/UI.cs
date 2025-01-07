@@ -143,7 +143,7 @@ public class UI
     }
 
 
-    public static CustomClasses.GameWinValidation DisplayGameWinStatus(bool gameStatus, double walletAmount, double wagerAmount, double payoutAmount)
+    public static CustomClasses.GameWinValidation DisplayGameWinStatus(bool gameStatus, double walletAmount, double wagerAmount)
     {
         var Gamewin = new CustomClasses.GameWinValidation();
         
