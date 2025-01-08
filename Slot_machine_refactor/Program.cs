@@ -111,34 +111,10 @@ class Program
             }
 
             //Win or lose logic
-            //UI.DiplayGameWinStatus()
-            if (gameWin == false)
-            {
-                Console.WriteLine("You Lose!");
-                wallet = (wallet - wager);
-            }
-
-            if (gameWin)
-            {
-                Console.WriteLine("You Win!");
-                totalPayout = payoutRate * wager;
-                wallet = totalPayout + wallet;
-                Console.WriteLine($"Your total payout is: {totalPayout}");
-                Console.WriteLine($"The total in your wallet is: {wallet}");
-            }
-
-            if (wallet == 0.0)
-            {
-                Console.WriteLine("Game Over! You currently have no funds left.");
-                input = Constants.NO_FUNDS_LEFT;
-            }
-            else
-            {
-                Console.WriteLine($"You currently have ${wallet} in your wallet");
-                Console.WriteLine($"would you like to play again? {Constants.CONTINUE_PLAYING_GAME}/N");
-                input = Console.ReadKey().KeyChar;
-                input = char.ToUpper(input);
-            }
+            var gameWinStatus = UI.DisplayGameWinStatus(gameWin, wallet, wager, payoutRate );
+            input = gameWinStatus.ContinueGame;
+            wallet = gameWinStatus.Wallet;
+            //totalPayout = gameWinStatus.Payout;
         }
     }
 }

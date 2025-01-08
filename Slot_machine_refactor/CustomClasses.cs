@@ -23,11 +23,9 @@ public class CustomClasses
     
     public class GameWinValidation
     {
-        public bool GameWin;
         public double Payout;
-        public bool ContinueGame;
+        public char ContinueGame;
         public double Wallet;
-        
     }
 
     

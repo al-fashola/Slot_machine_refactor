@@ -143,11 +143,40 @@ public class UI
     }
 
 
-    public static CustomClasses.GameWinValidation DisplayGameWinStatus(bool gameStatus, double walletAmount, double wagerAmount)
+    public static CustomClasses.GameWinValidation DisplayGameWinStatus(bool gameStatus, double walletAmount, double wagerAmount, double payoutRate)
     {
         var Gamewin = new CustomClasses.GameWinValidation();
+
         
+        Gamewin.Wallet = walletAmount;
         
+        if (gameStatus == false)
+        {
+            Console.WriteLine("You Lose!");
+            Gamewin.Wallet = (Gamewin.Wallet - wagerAmount);
+        }
+
+        if (gameStatus)
+        {
+            Console.WriteLine("You Win!");
+            Gamewin.Payout = payoutRate * wagerAmount;
+            Gamewin.Wallet = Gamewin.Payout + Gamewin.Wallet;
+            Console.WriteLine($"Your total payout is: {Gamewin.Payout}");
+            Console.WriteLine($"The total in your wallet is: {Gamewin.Wallet}\n");
+        }
+
+        if (Gamewin.Wallet == 0.0)
+        {
+            Console.WriteLine("Game Over! You currently have no funds left.");
+            Gamewin.ContinueGame = Constants.NO_FUNDS_LEFT;
+        }
+        else
+        {
+            Console.WriteLine($"You currently have ${Gamewin.Wallet} in your wallet");
+            Console.WriteLine($"would you like to play again? {Constants.CONTINUE_PLAYING_GAME}/N");
+            Gamewin.ContinueGame = Console.ReadKey().KeyChar;
+            Gamewin.ContinueGame = char.ToUpper(Gamewin.ContinueGame);
+        }
         
         return Gamewin;
         
