@@ -31,18 +31,20 @@ public class Logic
     }
     
     
-    public static double payoutRate = 0.0;
-    public static bool gameWin = false;
-    public static int centerValueInt = Constants.MATRIX_GRID_SIZE / 2;
+    //public static double payoutRate = 0.0;
+    //public static bool gameWin = false;
+    //public static int centerValueInt = Constants.MATRIX_GRID_SIZE / 2;
     
     // Validate gamewin - return bool, payoutrate/total payout - create variable for this return function 
     //this will contain all the if validations but could break them each into smaller methods as well before being called in the main gamewin
     
     public static  (bool GameWin, double Payout) ValidateCenterLineGameMode(int gameMode, int [,] grid )
     {
+        double payoutRate = 0.0;
+        bool gameWin = false;
+        int centerValueInt = Constants.MATRIX_GRID_SIZE / 2;
         int matchCounter = 0;
-        payoutRate = 0.0;
-        gameWin = false;
+        
         
         if (gameMode == Constants.CENTER_LINE_MODE)
         {
@@ -66,9 +68,9 @@ public class Logic
     {
         int firstValue = 0;
         int matchCounter = 0;
-        payoutRate = 0.0;
-        gameWin = false;
-        
+        double payoutRate = 0.0;
+        bool gameWin = false;
+
         if (gameMode == Constants.HORIZONTAL_LINE_MODE)
         {
             for (int i = 0; i < Constants.MATRIX_GRID_SIZE; i++)
@@ -96,8 +98,8 @@ public class Logic
     {
         int firstValue = 0;
         int matchCounter = 0;
-        payoutRate = 0.0;
-        gameWin = false;
+        double payoutRate = 0.0;
+        bool gameWin = false;
         
         if (gameMode == Constants.VERTICAL_LINE_MODE)
         {
@@ -125,8 +127,9 @@ public class Logic
     public static (bool GameWin, double Payout) ValidateDiagonalLineGameMode(int gameMode, int [,] grid )
     {
         int matchCounter = 0;
-        payoutRate = 0.0;
-        gameWin = false;
+        double payoutRate = 0.0;
+        bool gameWin = false;
+        int centerValueInt = Constants.MATRIX_GRID_SIZE / 2;
         
         if (gameMode == Constants.ALL_DIAGONOL_LINE_MODE)
         {
