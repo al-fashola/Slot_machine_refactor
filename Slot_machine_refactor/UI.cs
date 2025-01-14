@@ -51,14 +51,29 @@ public class UI
     {
         Console.WriteLine($"You currently have ${amount} loaded in your wallet .");
     }
-    
-    public static void DisplayGameModes(int gameMode1, int gameMode2, int gameMode3, int gameMode4)
+
+    public static Dictionary<int, string> CreateGameModes()
     {
-        Console.WriteLine("You will have the following options: \n" +
-                          $"{gameMode1} - Play the center line \n" +
-                          $"{gameMode2} - Play all three horizontals \n" +
-                          $"{gameMode3} - Play all vertical lines \n" +
-                          $"{gameMode4} - Play diagonal lines \n");
+        Dictionary<int, string> gameModes = new Dictionary<int, string>();
+    
+        gameModes.Add(Constants.CENTER_LINE_MODE, "Play the center line");
+        gameModes.Add(Constants.HORIZONTAL_LINE_MODE, "Play all three horizontals");
+        gameModes.Add(Constants.VERTICAL_LINE_MODE, "Play all vertical lines");
+        gameModes.Add(Constants.ALL_DIAGONOL_LINE_MODE, "Play diagonal lines");
+        
+        // Be sure to update constant NUMBER_OF_GAMES_OPTIONS for the number of games 
+        
+        return gameModes;
+    }
+    
+    
+    public static void DisplayGameModes(Dictionary<int, string> gameModes)
+    {
+        Console.WriteLine("You will have the following options: \n");
+        foreach (KeyValuePair<int, string> gameMode in gameModes)
+        {
+            Console.WriteLine($"{gameMode.Key} - {gameMode.Value}");
+        }
     }
 
     public static (double DoubleValue, bool SuccessfulDouble) GetUserBetEntry()

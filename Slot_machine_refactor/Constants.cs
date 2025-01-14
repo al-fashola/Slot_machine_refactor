@@ -16,5 +16,6 @@ public class Constants
     public const double  ALL_DIAGONOL_LINE_PAYOUT = 0.75;
     public const char  CONTINUE_PLAYING_GAME = 'Y';
     public const char  NO_FUNDS_LEFT = 'N';
+    
 
 }

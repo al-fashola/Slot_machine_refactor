@@ -16,7 +16,7 @@ public class Logic
         return success;
     }
     
-    public static int[,] PopulateSlotMachineGrid ()
+    public static int[,] PopulateSlotMachineGrid()
     {
         int[,] SlotGrid = new int[Constants.MATRIX_GRID_SIZE, Constants.MATRIX_GRID_SIZE];
         

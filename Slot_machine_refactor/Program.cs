@@ -19,7 +19,8 @@ class Program
         while (input == Constants.CONTINUE_PLAYING_GAME)
         {
             UI.DisplayWalletAmount(wallet);
-            UI.DisplayGameModes(Constants.CENTER_LINE_MODE, Constants.HORIZONTAL_LINE_MODE, Constants.VERTICAL_LINE_MODE, Constants.ALL_DIAGONOL_LINE_MODE);
+            Dictionary<int, string> gameModes = UI.CreateGameModes();
+            UI.DisplayGameModes(gameModes);
 
             double wager = 0.0;
 
