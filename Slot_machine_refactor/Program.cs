@@ -67,49 +67,36 @@ class Program
             int matchCounter = 0;
             int firstValue = 0;
 
+            (bool GameWin, double Payout) gameModeResults = (false, 0.0);
+            
+
             
             if (gameMode == Constants.CENTER_LINE_MODE)
-            {
-             var gameModeResults = Logic.ValidateCenterLineGameMode(gameMode, grid);
-
-             if (gameModeResults.GameWin)
-             {
-                 gameWin = true;
-                 payoutRate = gameModeResults.Payout;
-             }
+            { 
+                gameModeResults = Logic.ValidateCenterLineGameMode(gameMode, grid);
             }
 
             if (gameMode == Constants.HORIZONTAL_LINE_MODE)
             {
-                var gameModeResults = Logic.ValidateHorizontalLineGameMode(gameMode, grid);
-
-                if (gameModeResults.GameWin)
-                {
-                    gameWin = true;
-                    payoutRate = gameModeResults.Payout;
-                }
+                gameModeResults = Logic.ValidateHorizontalLineGameMode(gameMode, grid);
             }
 
             if (gameMode == Constants.VERTICAL_LINE_MODE)
             {
-                var gameModeResults = Logic.ValidateVerticalLineGameMode(gameMode, grid);
-
-                if (gameModeResults.GameWin)
-                {
-                    gameWin = true;
-                    payoutRate = gameModeResults.Payout;
-                }
+                gameModeResults = Logic.ValidateVerticalLineGameMode(gameMode, grid);
             } 
 
             if (gameMode == Constants.ALL_DIAGONOL_LINE_MODE)
             {
-                var gameModeResults = Logic.ValidateDiagonalLineGameMode(gameMode, grid);
-                if (gameModeResults.GameWin)
-                {
-                    gameWin = true;
-                    payoutRate = gameModeResults.Payout;
-                }
+                gameModeResults = Logic.ValidateDiagonalLineGameMode(gameMode, grid);
             }
+            
+            if (gameModeResults.GameWin)
+            {
+                gameWin = true;
+                payoutRate = gameModeResults.Payout;
+            }
+            
 
             //Win or lose logic
             var gameWinStatus = UI.DisplayGameWinStatus(gameWin, wallet, wager, payoutRate );

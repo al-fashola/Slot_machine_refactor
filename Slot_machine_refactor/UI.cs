@@ -61,7 +61,7 @@ public class UI
         gameModes.Add(Constants.VERTICAL_LINE_MODE, "Play all vertical lines");
         gameModes.Add(Constants.ALL_DIAGONOL_LINE_MODE, "Play diagonal lines");
         
-        // Be sure to update constant NUMBER_OF_GAMES_OPTIONS for the number of games 
+        // Be sure to update constant NUMBER_OF_GAMES_OPTIONS with the total number of games 
         
         return gameModes;
     }
