@@ -8,12 +8,11 @@ public class UI
         Console.WriteLine("Let's play a game! The name of the game is a slot machine");
     }
 
-    public static (double DoubleValue, bool SuccessfulDouble) ValidateDoubleEntry(string entry)
+    public static double ValidateDoubleEntry(string entry)
     {
         double val;
         bool success = double.TryParse(entry, out val);
         double finalVal;
-        //var doubleEntry = new CustomClasses.DoubleValidation();
 
         if (success)
         {
@@ -24,27 +23,28 @@ public class UI
             Console.WriteLine("Please enter a valid Double entry only");
             finalVal = -1;
         }
-        return (finalVal, success);
+        return (finalVal);
     }
     
-    public static (double DoubleValue, bool SuccessfulDouble) ValidateUserWalletEntry()
+    public static double ValidateUserWalletEntry()
     {
         string value;
         bool success = false;
-        double finalVal = 0.0;
-        
-        //var final  = new CustomClasses.DoubleValidation();
+        double finalVal = -1.0;
 
         while (!success)
         {
             Console.WriteLine("Please enter how much you would like to load in your wallet now: ");
             value = Console.ReadLine();
 
-            var final = ValidateDoubleEntry(value);
-            success = final.SuccessfulDouble;
-            finalVal = final.DoubleValue;
+            double DoubleValue = ValidateDoubleEntry(value);
+            if (DoubleValue > -1)
+            {
+                success = true;
+                finalVal = DoubleValue;
+            }
         }
-        return ( finalVal , success);
+        return (finalVal);
     }
     
     public static void DisplayWalletAmount( double amount)
@@ -52,24 +52,25 @@ public class UI
         Console.WriteLine($"You currently have ${amount} loaded in your wallet .");
     }
 
-    public static (double DoubleValue, bool SuccessfulDouble) GetUserBetEntry()
+    public static double GetUserBetEntry()
     {
         string value;
         bool success = false;
-        double finalVal = 0.0;
-        
-        //var final  = new CustomClasses.DoubleValidation();
+        double finalVal = -1.0;
 
         while (!success)
         {
             Console.WriteLine("Please enter your bet now: ");
             value = Console.ReadLine();
 
-            var final = ValidateDoubleEntry(value);
-            success = final.SuccessfulDouble;
-            finalVal = final.DoubleValue;
+            double DoubleValue = ValidateDoubleEntry(value);
+            if(DoubleValue > -1)
+            {
+                success = true;
+                finalVal = DoubleValue;
+            }
         }
-        return (finalVal, success);
+        return (finalVal);
         
     }
     
@@ -81,13 +82,11 @@ public class UI
     }
     
     
-    public static (int IntValue, bool SuccessfulInteger) ValidateIntEntry(string entry)
+    public static int ValidateIntEntry(string entry)
     {
         int val;
         bool success = int.TryParse(entry, out val);
         int finalVal; 
-
-        //var IntEntry = new CustomClasses.IntValidation();
 
         if (success)
         {
@@ -99,27 +98,28 @@ public class UI
             finalVal = -1;
         }
 
-        return (finalVal, success);
+        return (finalVal);
     }
     
-    public static (int IntValue, bool SuccessfulInteger) ValidateUserGameEntry()
+    public static int ValidateUserGameEntry()
     {
         string value;
         bool success = false;
         int finalVal = 0; 
-        
-        //var final  = new CustomClasses.IntValidation();
 
         while (!success)
         {
             Console.WriteLine("Enter your choice number: ");
             value = Console.ReadLine();
 
-            (int IntValue, bool SuccessfulInteger) final = ValidateIntEntry(value);
-            finalVal = final.IntValue;
-            success = final.SuccessfulInteger;
+            int IntValue= ValidateIntEntry(value);
+            if (IntValue > 0 )
+            {
+                finalVal = IntValue;
+                success = true;
+            }
         }
-        return ( finalVal, success);
+        return (finalVal);
     }
 
     public static void DiplaySlotGrid(int[,] grid)
@@ -136,10 +136,10 @@ public class UI
     }
 
 
+    // break this out into multiple methods - 3 
     public static GameWinValidation.GameWinValidationClass DisplayGameWinStatus(bool gameStatus, double walletAmount, double wagerAmount, double payoutRate)
     {
         var Gamewin = new GameWinValidation.GameWinValidationClass();
-
         
         Gamewin.Wallet = walletAmount;
         

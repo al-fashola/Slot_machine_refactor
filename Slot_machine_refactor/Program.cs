@@ -7,12 +7,11 @@ class Program
         //intro message to establish the game being played 
         UI.DisplayUserIntroMessage();
         
-        bool wagerEntrySuccessful;
-        bool gameChoiceSuccessful;
-    
+        // necessary?
+        bool wagerEntrySuccessful = false;
+        bool gameChoiceSuccessful = false;
         
-        var walletEntry  = UI.ValidateUserWalletEntry();
-        double wallet = walletEntry.DoubleValue;
+        double wallet = UI.ValidateUserWalletEntry();
         
         //Define game modes as dictionary 
         Dictionary<int, string> gameModes = new Dictionary<int, string>();
@@ -36,30 +35,39 @@ class Program
 
             double wager = 0.0;
 
-            var wagerEntry = UI.GetUserBetEntry();
-            wagerEntrySuccessful = wagerEntry.SuccessfulDouble;  
-            wager = wagerEntry.DoubleValue;
+            double wagerEntry = UI.GetUserBetEntry();
+            if (wagerEntry > -0.0)
+            {
+                wager = wagerEntry;
+                wagerEntrySuccessful = true;
+            }
             
             while (Logic.ValidateSuccessfulWagerEntry(wagerEntrySuccessful, wager, wallet))
             {
                 UI.DisplayBetEntryInvalidMessage(wallet);
                 
                 wagerEntry = UI.GetUserBetEntry();
-                wagerEntrySuccessful = wagerEntry.SuccessfulDouble;
-                wager = wagerEntry.DoubleValue;
+                if (wagerEntry > -1.0)
+                {
+                    wager = wagerEntry;
+                    wagerEntrySuccessful = true;
+                }
             }
 
             int gameMode = 0;
                 
-            var GameEntry  = UI.ValidateUserGameEntry();
-            gameChoiceSuccessful = GameEntry.SuccessfulInteger;
-            gameMode = GameEntry.IntValue;
+            int GameEntry  = UI.ValidateUserGameEntry();
+            if (GameEntry > -1)
+            {
+                gameChoiceSuccessful = true;
+                gameMode = GameEntry;
+            }
                
             while (Logic.ValidateSuccessfulGameEntry(gameChoiceSuccessful, gameMode))
             {
                 GameEntry = UI.ValidateUserGameEntry();
-                gameChoiceSuccessful = GameEntry.SuccessfulInteger; 
-                gameMode = GameEntry.IntValue;
+                gameChoiceSuccessful = true; 
+                gameMode = GameEntry;
             }
 
             // assign the size of array
