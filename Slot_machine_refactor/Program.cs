@@ -13,14 +13,26 @@ class Program
         
         var walletEntry  = UI.ValidateUserWalletEntry();
         double wallet = walletEntry.DoubleValue;
-       
+        
+        //Define game modes as dictionary 
+        Dictionary<int, string> gameModes = new Dictionary<int, string>();
+        {
+            gameModes.Add(Constants.CENTER_LINE_MODE, "Play the center line");
+            gameModes.Add(Constants.HORIZONTAL_LINE_MODE, "Play all three horizontals");
+            gameModes.Add(Constants.VERTICAL_LINE_MODE, "Play all vertical lines");
+            gameModes.Add(Constants.ALL_DIAGONOL_LINE_MODE, "Play diagonal lines");
+        }
         
         char input = Constants.CONTINUE_PLAYING_GAME;
         while (input == Constants.CONTINUE_PLAYING_GAME)
         {
             UI.DisplayWalletAmount(wallet);
-            Dictionary<int, string> gameModes = UI.CreateGameModes();
-            UI.DisplayGameModes(gameModes);
+            
+            // Print all available game mode types 
+            foreach (KeyValuePair<int, string> game in gameModes)
+            {
+                Console.WriteLine($"{game.Key} - {game.Value}");
+            }
 
             double wager = 0.0;
 
