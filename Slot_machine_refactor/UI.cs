@@ -49,7 +49,7 @@ public class UI
     
     public static void DisplayWalletAmount( double amount)
     {
-        Console.WriteLine($"You currently have ${amount} loaded in your wallet .");
+        Console.WriteLine($"\nYou currently have ${amount} loaded in your wallet.");
     }
 
     public static double GetUserBetEntry()
@@ -135,25 +135,55 @@ public class UI
         }
     }
 
+    public static (double payr, double wallet) CalculateGameWinDoubles(bool gameStatus, double walletAmount, double wagerAmount, double payoutRate)
+    {
+        double payoutfinal = 0.0;
+        double walletFinal = 0.0;
+        
+        if (gameStatus == false)
+        {
+            walletFinal = (walletAmount - wagerAmount);
+        }
 
-    // break this out into multiple methods - 3 
+        if (gameStatus)
+        {
+            payoutfinal = payoutRate * wagerAmount;
+            walletFinal = payoutfinal + walletAmount;
+        }
+        return (payoutfinal, walletFinal);
+        
+    }
+
+
+    public static char continueGameStatus(double walletAmount)
+    {
+        char continueGame = ' ';
+        if (walletAmount == 0.0)
+        {
+            continueGame = Constants.NO_FUNDS_LEFT;
+        }
+        else
+        {
+            continueGame = Console.ReadKey().KeyChar;
+            continueGame = char.ToUpper(continueGame);
+        }
+        return continueGame;
+    }
+    
+    
     public static GameWinValidation.GameWinValidationClass DisplayGameWinStatus(bool gameStatus, double walletAmount, double wagerAmount, double payoutRate)
     {
         var Gamewin = new GameWinValidation.GameWinValidationClass();
-        
-        Gamewin.Wallet = walletAmount;
+        (Gamewin.Payout , Gamewin.Wallet) = CalculateGameWinDoubles(gameStatus, walletAmount, wagerAmount, payoutRate);
         
         if (gameStatus == false)
         {
             Console.WriteLine("You Lose!");
-            Gamewin.Wallet = (Gamewin.Wallet - wagerAmount);
         }
 
         if (gameStatus)
         {
             Console.WriteLine("You Win!");
-            Gamewin.Payout = payoutRate * wagerAmount;
-            Gamewin.Wallet = Gamewin.Payout + Gamewin.Wallet;
             Console.WriteLine($"Your total payout is: {Gamewin.Payout}");
             Console.WriteLine($"The total in your wallet is: {Gamewin.Wallet}\n");
         }
@@ -161,15 +191,13 @@ public class UI
         if (Gamewin.Wallet == 0.0)
         {
             Console.WriteLine("Game Over! You currently have no funds left.");
-            Gamewin.ContinueGame = Constants.NO_FUNDS_LEFT;
         }
         else
         {
-            Console.WriteLine($"You currently have ${Gamewin.Wallet} in your wallet");
-            Console.WriteLine($"would you like to play again? {Constants.CONTINUE_PLAYING_GAME}/N");
-            Gamewin.ContinueGame = Console.ReadKey().KeyChar;
-            Gamewin.ContinueGame = char.ToUpper(Gamewin.ContinueGame);
+            Console.WriteLine($"\nYou currently have ${Gamewin.Wallet} in your wallet");
+            Console.WriteLine($"would you like to play again? {Constants.CONTINUE_PLAYING_GAME}/N\n");
         }
+        Gamewin.ContinueGame = continueGameStatus(walletAmount);
         
         return Gamewin;
         
