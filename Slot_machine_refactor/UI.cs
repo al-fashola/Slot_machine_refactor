@@ -155,10 +155,10 @@ public class UI
     }
 
 
-    public static char continueGameStatus(double walletAmount)
+    public static char GetContinueGameStatus(double walletAmount)
     {
         char continueGame = ' ';
-        if (walletAmount == 0.0)
+        if (walletAmount <= 0.1)
         {
             continueGame = Constants.NO_FUNDS_LEFT;
         }
@@ -176,28 +176,28 @@ public class UI
         var Gamewin = new GameWinValidation.GameWinValidationClass();
         (Gamewin.Payout , Gamewin.Wallet) = CalculateGameWinDoubles(gameStatus, walletAmount, wagerAmount, payoutRate);
         
-        if (gameStatus == false)
-        {
-            Console.WriteLine("You Lose!");
-        }
-
         if (gameStatus)
         {
             Console.WriteLine("You Win!");
             Console.WriteLine($"Your total payout is: {Gamewin.Payout}");
             Console.WriteLine($"The total in your wallet is: {Gamewin.Wallet}\n");
         }
+        else
+        {
+            Console.WriteLine("You Lose!");
+        }
 
-        if (Gamewin.Wallet == 0.0)
+        if (Gamewin.Wallet <= 0.10)
         {
             Console.WriteLine("Game Over! You currently have no funds left.");
+            return Gamewin;
         }
         else
         {
             Console.WriteLine($"\nYou currently have ${Gamewin.Wallet} in your wallet");
             Console.WriteLine($"would you like to play again? {Constants.CONTINUE_PLAYING_GAME}/N\n");
         }
-        Gamewin.ContinueGame = continueGameStatus(walletAmount);
+        Gamewin.ContinueGame = GetContinueGameStatus(walletAmount);
         
         return Gamewin;
         

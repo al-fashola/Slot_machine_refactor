@@ -123,6 +123,6 @@ class Program
             input = gameWinStatus.ContinueGame;
             wallet = gameWinStatus.Wallet;
             //totalPayout = gameWinStatus.Payout;
-        }
+        } 
     }
 }
