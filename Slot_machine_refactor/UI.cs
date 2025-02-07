@@ -134,27 +134,7 @@ public class UI
             Console.WriteLine("");
         }
     }
-
-    public static (double payr, double wallet) CalculateGameWinDoubles(bool gameStatus, double walletAmount, double wagerAmount, double payoutRate)
-    {
-        double payoutfinal = 0.0;
-        double walletFinal = 0.0;
-        
-        if (gameStatus == false)
-        {
-            walletFinal = (walletAmount - wagerAmount);
-        }
-
-        if (gameStatus)
-        {
-            payoutfinal = payoutRate * wagerAmount;
-            walletFinal = payoutfinal + walletAmount;
-        }
-        return (payoutfinal, walletFinal);
-        
-    }
-
-
+    
     public static char GetContinueGameStatus(double walletAmount)
     {
         char continueGame = ' ';
@@ -164,8 +144,7 @@ public class UI
         }
         else
         {
-            continueGame = Console.ReadKey().KeyChar;
-            continueGame = char.ToUpper(continueGame);
+            continueGame = char.ToUpper(Console.ReadKey().KeyChar);
         }
         return continueGame;
     }
@@ -174,7 +153,7 @@ public class UI
     public static GameWinValidation.GameWinValidationClass DisplayGameWinStatus(bool gameStatus, double walletAmount, double wagerAmount, double payoutRate)
     {
         var Gamewin = new GameWinValidation.GameWinValidationClass();
-        (Gamewin.Payout , Gamewin.Wallet) = CalculateGameWinDoubles(gameStatus, walletAmount, wagerAmount, payoutRate);
+        (Gamewin.Payout , Gamewin.Wallet) = Logic.CalculateGameWinDoubles(gameStatus, walletAmount, wagerAmount, payoutRate);
         
         if (gameStatus)
         {

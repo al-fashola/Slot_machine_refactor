@@ -151,6 +151,28 @@ public class Logic
         }
         return (gameWin, payoutRate);
     }
+    
+    public static (double payr, double wallet) CalculateGameWinDoubles(bool gameStatus, double walletAmount, double wagerAmount, double payoutRate)
+    {
+        double payoutfinal = 0.0;
+        double walletFinal = 0.0;
+        
+        
+
+        if (gameStatus)
+        {
+            payoutfinal = payoutRate * wagerAmount;
+            walletFinal = payoutfinal + walletAmount;
+        }
+        else
+        {
+            walletFinal = (walletAmount - wagerAmount);
+        }
+        
+        return (payoutfinal, walletFinal);
+        
+    }
+    
 }
 
 
