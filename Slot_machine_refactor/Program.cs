@@ -75,9 +75,6 @@ class Program
 
             //print current grid 
             UI.DiplaySlotGrid(grid);
-           
-            
-            
             
 
             double payoutRate = 0.0;
@@ -119,8 +116,9 @@ class Program
             
 
             //Win or lose logic
-            var gameWinStatus = UI.DisplayGameWinStatus(gameWin, wallet, wager, payoutRate );
-            input = gameWinStatus.ContinueGame;
+            var gameWinCalc = Logic.CalculateGameWinDoubles(gameWin, wallet, wager, payoutRate);
+            var gameWinStatus = UI.DisplayGameWinStatus(gameWin,  gameWinCalc.wallet, wager, gameWinCalc.payr );
+            input = gameWinStatus.ContinueGame; // Set game status to determine if while loop continues 
             wallet = gameWinStatus.Wallet;
             //totalPayout = gameWinStatus.Payout;
         } 

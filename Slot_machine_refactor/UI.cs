@@ -153,7 +153,7 @@ public class UI
     public static GameWinValidation.GameWinValidationClass DisplayGameWinStatus(bool gameStatus, double walletAmount, double wagerAmount, double payoutRate)
     {
         var Gamewin = new GameWinValidation.GameWinValidationClass();
-        (Gamewin.Payout , Gamewin.Wallet) = Logic.CalculateGameWinDoubles(gameStatus, walletAmount, wagerAmount, payoutRate);
+        (Gamewin.Payout, Gamewin.Wallet) = (payoutRate, walletAmount);
         
         if (gameStatus)
         {
