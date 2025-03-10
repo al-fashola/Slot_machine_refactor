@@ -34,35 +34,26 @@ class Program
             }
 
             double wager = 0.0;
-
-            double wagerEntry = UI.GetUserBetEntry();
-            if (wagerEntry > -0.0)
-            {
-                wager = wagerEntry;
-                wagerEntrySuccessful = true;
-            }
-            
+            double wagerEntry = 0;
+           
             while (Logic.ValidateSuccessfulWagerEntry(wagerEntrySuccessful, wager, wallet))
             {
-                UI.DisplayBetEntryInvalidMessage(wallet);
-                
                 wagerEntry = UI.GetUserBetEntry();
-                if (wagerEntry > -1.0)
+                if (wagerEntry > -0.0 & wagerEntry <= wallet)
                 {
                     wager = wagerEntry;
                     wagerEntrySuccessful = true;
                 }
+                
+                if (wagerEntrySuccessful)
+                    break;
+                
+                UI.DisplayBetEntryInvalidMessage(wallet);
             }
 
             int gameMode = 0;
-                
-            int GameEntry  = UI.ValidateUserGameEntry();
-            if (GameEntry > -1)
-            {
-                gameChoiceSuccessful = true;
-                gameMode = GameEntry;
-            }
-               
+            int GameEntry;
+            
             while (Logic.ValidateSuccessfulGameEntry(gameChoiceSuccessful, gameMode))
             {
                 GameEntry = UI.ValidateUserGameEntry();
