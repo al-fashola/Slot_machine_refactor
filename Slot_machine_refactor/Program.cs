@@ -34,7 +34,7 @@ class Program
             }
 
             double wager = 0.0;
-            double wagerEntry = 0;
+            int wagerEntry = 0;
            
             while (Logic.ValidateSuccessfulWagerEntry(wagerEntrySuccessful, wager, wallet))
             {
@@ -111,7 +111,7 @@ class Program
             var gameWinStatus = UI.DisplayGameWinStatus(gameWin,  gameWinCalc.wallet, wager, gameWinCalc.payr );
             input = gameWinStatus.ContinueGame; // Set game status to determine if while loop continues 
             wallet = gameWinStatus.Wallet;
-            //totalPayout = gameWinStatus.Payout;
+            
         } 
     }
 }

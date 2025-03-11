@@ -52,22 +52,22 @@ public class UI
         Console.WriteLine($"\nYou currently have ${amount} loaded in your wallet.");
     }
 
-    public static double GetUserBetEntry()
+    public static int GetUserBetEntry()
     {
         string value;
         bool success = false;
-        double finalVal = -1.0;
+        int finalVal = -1;
 
         while (!success)
         {
             Console.WriteLine("Please enter your bet now: ");
             value = Console.ReadLine();
 
-            double DoubleValue = ValidateDoubleEntry(value);
-            if(DoubleValue > -1)
+            int IntValue = ValidateIntEntry(value);
+            if(IntValue > -1)
             {
                 success = true;
-                finalVal = DoubleValue;
+                finalVal = IntValue;
             }
         }
         return (finalVal);
@@ -94,7 +94,7 @@ public class UI
         }
         else
         {
-            Console.WriteLine("Please enter a valid Integer entry from the list only");
+            Console.WriteLine("Please enter a valid Integer entry only");
             finalVal = -1;
         }
 
@@ -166,9 +166,10 @@ public class UI
             Console.WriteLine("You Lose!");
         }
 
-        if (Gamewin.Wallet <= 0.10)
+        if (Gamewin.Wallet < Constants.MINIMUM_BET_AMOUNT)
         {
-            Console.WriteLine("Game Over! You currently have no funds left.");
+            UI.DisplayMinimumBetNotMetMessage(Gamewin.Wallet);
+            //Console.WriteLine("Game Over! You currently have no funds left.");
             return Gamewin;
         }
         else
@@ -182,5 +183,9 @@ public class UI
         
     }
 
+    public static void DisplayMinimumBetNotMetMessage( double walletAmount)
+    {
+        Console.WriteLine($"The current Wallet amount: {walletAmount} is below the minimum ${Constants.MINIMUM_BET_AMOUNT} bet amount. Game over!");
+    }
 
 }
