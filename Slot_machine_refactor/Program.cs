@@ -28,10 +28,7 @@ class Program
             UI.DisplayWalletAmount(wallet);
             
             // Print all available game mode types 
-            foreach (KeyValuePair<int, string> game in gameModes)
-            {
-                Console.WriteLine($"{game.Key} - {game.Value}");
-            }
+            UI.DisplayGameModes(gameModes);
 
             double wager = 0.0;
             int wagerEntry = 0;

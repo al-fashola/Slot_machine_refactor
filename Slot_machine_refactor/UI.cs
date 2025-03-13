@@ -7,6 +7,14 @@ public class UI
     {
         Console.WriteLine("Let's play a game! The name of the game is a slot machine");
     }
+    
+    public static void DisplayGameModes(Dictionary<int, string> gameModes)
+    {
+        foreach (KeyValuePair<int, string> game in gameModes)
+        {
+            Console.WriteLine($"{game.Key} - {game.Value}");
+        }
+    }
 
     public static double ValidateDoubleEntry(string entry)
     {
